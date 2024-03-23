@@ -1,0 +1,34 @@
+➜  SortedListHasA ./a.out                                                                         
+Current scores: The sorted list contains 
+1 23 34 87 
+
+
+Please enter a new score: 34
+Current scores: The sorted list contains 
+1 23 34 34 87 
+
+
+Please enter a new score: 23
+Current scores: The sorted list contains 
+1 23 23 34 34 87 
+
+
+Please enter a new score: 12345
+Current scores: The sorted list contains 
+1 23 23 34 34 87 12345 
+
+
+Please enter a new score: 54
+Current scores: The sorted list contains 
+1 23 23 34 34 54 87 12345 
+
+
+Please enter a new score: 235
+Current scores: The sorted list contains 
+1 23 23 34 34 54 87 235 12345 
+
+
+Please enter a new score: -1
+The sorted list contains 
+1 23 23 34 34 54 87 235 12345 
+

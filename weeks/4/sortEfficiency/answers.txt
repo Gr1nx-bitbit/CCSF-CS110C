@@ -1,0 +1,23 @@
+Question 3: In big O notation, what is the expected efficiency? From the data I got, the efficiency seems to lie between O(n) and O(n^2)
+Why is counting sort impractical as a general sorting algorithm? When you don't know the range of your numbers it can be hassle because
+you'd have to do some sorting so you can sort the array further which defeats the purpose of the algorithm. It seems to really efficient, however,
+since to sort it only has to go through an array once to pick up how many of each number there are, then print them out. It has a nested loop though 
+so it seems like count would be O(n^2)
+
+*****
+TABLE
+*****
+Insertion; array len: 8; pass 1: 35; pass 2: 38; pass 3: 50; average: 41 |
+Insertion; array len: 32; pass 1: 926; pass 2: 782; pass 3: 833; average: 847 |
+Insertion; array len: 128; pass 1: 12125; pass 2: 12938; pass 3: 12035; average: 12366 |
+
+Merge; array len: 8; pass 1: 116; pass 2: 110; pass 3: 114; average: 113 |
+Merge; array len: 32; pass 1: 776; pass 2: 772; pass 3: 764; average: 770 |
+Merge; array len: 128; pass 1: 4328; pass 2: 4310; pass 3: 4328; average: 4322 |
+
+Count; array len: 8; pass 1: 35; pass 2: 35; pass 3: 35; average: 35 |
+Count; array len: 32; pass 1: 131; pass 2: 131; pass 3: 131; average: 131 |
+Count; array len: 128; pass 1: 515; pass 2: 515; pass 3: 515; average: 515 |
+*****
+TABLE
+*****
