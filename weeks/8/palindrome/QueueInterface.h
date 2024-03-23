@@ -1,5 +1,6 @@
 #ifndef QUEUEINTERFACE_H
 #define QUEUEINTERFACE_H
+#include <iostream>
 
 template<class QueueType>
 class QueueInterface
