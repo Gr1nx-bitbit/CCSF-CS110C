@@ -1,19 +1,19 @@
 #include "Queue.h"
 
 template <class QueueType>
-bool Queue<QueueType>::enqueue(QueueType newEntry, int max)
+bool Queue<QueueType>::enqueue(QueueType newEntry)
 {
     if (this->isEmpty())
     {
-        this->entries[(front % max)] = newEntry;
-        back++;
+        this->entries[front] = newEntry;
+        back = (back + 1) % queueMax;
         count++;
         return true;
     }
-    else if (!this->isEmpty() && !this->entries[(back % max)])
+    else if (!this->isEmpty() && !this->entries[back])
     {
-        this->entries[(back % max)] = newEntry;
-        back++;
+        this->entries[back] = newEntry;
+        back = (back + 1) % queueMax;
         count++;
         return true;
     }
@@ -24,16 +24,16 @@ bool Queue<QueueType>::enqueue(QueueType newEntry, int max)
 }
 
 template <class QueueType>
-bool Queue<QueueType>::dequeue(int max)
+bool Queue<QueueType>::dequeue()
 {
     if (this->isEmpty())
     {
         return false;
     }
-    else if (!this->isEmpty() && this->entries[(front % max)])
+    else if (!this->isEmpty() && this->entries[front])
     {
-        entries[(front % max)] = '\0';
-        front++;
+        this->entries[front] = '\0';
+        front = (front + 1) % queueMax;
         count--;
         return true;
     }
@@ -41,9 +41,9 @@ bool Queue<QueueType>::dequeue(int max)
 }
 
 template <class QueueType>
-QueueType Queue<QueueType>::peek(int max)
+QueueType Queue<QueueType>::peek()
 {
-    return entries[(front % max)];
+    return entries[front];
 }
 
 template <class QueueType>

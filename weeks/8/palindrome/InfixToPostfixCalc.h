@@ -24,7 +24,7 @@ class InfixToPostfixCalc : public CalculatorInterface<CalcType>
         ~InfixToPostfixCalc();
         bool isEmpty(void);
         CalcType peek(void);
-        void pop(Node<CalcType>* ptr);
+        void pop(/* Node<CalcType>* ptr */);
         bool push(CalcType);
         Node<CalcType>* getTailPtr();
 };

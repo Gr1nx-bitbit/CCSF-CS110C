@@ -28,14 +28,18 @@ CalcType InfixToPostfixCalc<CalcType>::peek(void)
 }
 
 template<class CalcType>
-void InfixToPostfixCalc<CalcType>::pop(Node<CalcType>* ptr)
+void InfixToPostfixCalc<CalcType>::pop(/*Node<CalcType>* ptr*/)
 {
-    if (ptr)
-    {
-        Node<CalcType>* cursor = ptr;
-        tailptr = ptr->getPrevious();
-        delete cursor;
-    }
+    // if (ptr)
+    // {
+    //     Node<CalcType>* cursor = ptr;
+    //     tailptr = ptr->getPrevious();
+    //     delete cursor;
+    // }
+
+    Node<CalcType>* cursor = tailptr;
+    tailptr = tailptr->getPrevious();
+    delete cursor;
 }
 
 template<class CalcType>

@@ -8,7 +8,7 @@ class CalculatorInterface
     public:
         virtual bool isEmpty(void) = 0;
         virtual CalcType peek(void) = 0;
-        virtual void pop(Node<CalcType>* ptr) = 0;
+        virtual void pop(/* Node<CalcType>* */) = 0;
         virtual bool push(CalcType) = 0;
 };
 

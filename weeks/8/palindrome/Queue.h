@@ -11,6 +11,7 @@ private:
    int front;
    int back;
    int count;
+   int queueMax;
    /*
    front will store the index of the front most element. so if
    we dequeue the first element front will then be incremented 
@@ -27,10 +28,10 @@ private:
    */
 public:
    Queue(int maxQueue) 
-     { front = 0; back = 0; count = 0; entries = new QueueType[maxQueue]; }
-   bool enqueue(QueueType newEntry, int max);
-   bool dequeue(int max);
-   QueueType peek(int max);
+     { front = 0; back = 0; count = 0; entries = new QueueType[maxQueue]; queueMax = maxQueue; }
+   bool enqueue(QueueType newEntry);
+   bool dequeue();
+   QueueType peek();
    bool isEmpty();
 };
 
