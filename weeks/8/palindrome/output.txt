@@ -1,0 +1,3 @@
+popnrornpop is a Palindrome!
+racecar is a Palindrome!
+popcorn is not a Palindrome!

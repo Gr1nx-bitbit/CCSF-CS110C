@@ -9,7 +9,7 @@ bool isPalindrome(Queue<char>, InfixToPostfixCalc<char>, int);
 
 int main(void)
 {
-    string input = "popnrornpop";
+    string input = "popcorn";
     int queueMax = input.length();
     InfixToPostfixCalc<char> stack;
     Queue<char> queue(queueMax);
@@ -22,11 +22,11 @@ int main(void)
 
     if (isPalindrome(queue, stack, queueMax))
     {
-        cout << "it's a Palindrome!" << endl;
+        cout << input << " is a Palindrome!" << endl;
     }
     else
     {
-        cout << "it's not a Palindrome!" << endl;
+        cout << input << " is not a Palindrome!" << endl;
     }
     
 
