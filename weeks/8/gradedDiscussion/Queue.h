@@ -26,8 +26,8 @@ private:
 public:
    Queue(int maxQueue) 
      { front = 0; back = 0; count = 0; entries = new QueueType[maxQueue]; }
-   bool enqueue(QueueType newEntry);
-   bool dequeue();
-   char peek();
+   bool enqueue(QueueType newEntry, int max);
+   bool dequeue(int max);
+   QueueType peek(int max);
    bool isEmpty();
 };
