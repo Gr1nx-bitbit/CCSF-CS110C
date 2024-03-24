@@ -18,6 +18,7 @@ int main(void)
         //Node<char>* ref = cool.getTailPtr();
         cool.pop(cool.getTailPtr());
     }
+    cout << "hey: " << cool.isEmpty() << endl;
 
     return 0;
 }

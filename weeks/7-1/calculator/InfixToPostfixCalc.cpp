@@ -69,3 +69,5 @@ Node<CalcType>* InfixToPostfixCalc<CalcType>::getTailPtr()
 {
     return tailptr;
 }
+
+template class InfixToPostfixCalc<char>;

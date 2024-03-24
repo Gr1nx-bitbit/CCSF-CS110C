@@ -1,3 +1,5 @@
+#ifndef QUEUE_H
+#define QUEUE_H
 // a queue of chars
 template <class QueueType>
 class Queue {
@@ -31,3 +33,5 @@ public:
    QueueType peek(int max);
    bool isEmpty();
 };
+
+#endif
