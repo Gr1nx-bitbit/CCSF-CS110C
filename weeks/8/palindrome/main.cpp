@@ -26,7 +26,7 @@ int main(void)
     }
     else
     {
-        cout << input << " is not a Palindrome!" << endl;
+        cout << input << " isn't a Palindrome!" << endl;
     }
 
     //need to do this because isPalindrome() makes a copy of queue and dequeues that instead of the 
@@ -51,10 +51,10 @@ int main(void)
     }
     else
     {
-        cout << input << " is not a Palindrome!" << endl;
+        cout << input << " isn't a Palindrome!" << endl;
     }
 
-    //tailptr gets freed twice
+    //tailptr gets freed twice?
     cout << stack.getTailPtr() << endl;
 
     return 0;
