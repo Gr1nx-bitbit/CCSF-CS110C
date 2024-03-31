@@ -36,7 +36,8 @@ protected:
    BinaryNode<ItemType>* balancedAdd(BinaryNode<ItemType>* subTreePtr,
                                      BinaryNode<ItemType>* newNodePtr);
 
-   BinaryNode<ItemType>* randomAdd(BinaryNode<ItemType>* subTreeptr);
+   BinaryNode<ItemType>* randomAdd(BinaryNode<ItemType>*);
+   void randAdd(BinaryNode<ItemType>*, BinaryNode<ItemType>*);
    
    // Removes the target value from the tree by calling moveValuesUpTree
    // to overwrite value with value from child.

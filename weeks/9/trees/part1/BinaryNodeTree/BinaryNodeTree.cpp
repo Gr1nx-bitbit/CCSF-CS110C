@@ -10,7 +10,7 @@
 #include <cstdlib>
 #include <ctime>
 
-#define DEBUG
+//#define DEBUG
 
 //////////////////////////////////////////////////////////////
 //      Protected Utility Methods Section
@@ -64,8 +64,6 @@ BinaryNode<ItemType>* BinaryNodeTree<ItemType>::balancedAdd(BinaryNode<ItemType>
 
 bool coinFlip()
 {
-   unsigned seed = std::time(0);
-   std::srand(seed);
    if (std::rand() % 2)
    {
       return true;
@@ -76,12 +74,15 @@ bool coinFlip()
    }
 }
 
+//this one failed :(
 template<class ItemType>
 BinaryNode<ItemType>* BinaryNodeTree<ItemType>::randomAdd(BinaryNode<ItemType>* subTreePtr)
 {
    //base case of no next pointer
    
    if (subTreePtr) {
+      bool left = false;
+      bool right = false;
       BinaryNode<ItemType>* cursor;
       if (coinFlip())
       {
@@ -91,6 +92,7 @@ BinaryNode<ItemType>* BinaryNodeTree<ItemType>::randomAdd(BinaryNode<ItemType>* 
          << " and its value is: " << subTreePtr->getItem() << std::endl;
          #endif
          cursor = subTreePtr->getRightChildPtr();
+         left = true;
          #ifdef DEBUG
          std::cout << "Cursor is at " << cursor
           << " and subtree left is at: " << subTreePtr->getLeftChildPtr() << std::endl;
@@ -99,11 +101,12 @@ BinaryNode<ItemType>* BinaryNodeTree<ItemType>::randomAdd(BinaryNode<ItemType>* 
       else
       {
          #ifdef DEBUG
-         std::cout << "Taking right" << std::endl;
+         std::cout << "Taking left" << std::endl;
          std::cout << "Subtree is at " << subTreePtr 
          << " and its value is: " << subTreePtr->getItem() << std::endl;
          #endif
          cursor = subTreePtr->getLeftChildPtr();
+         right = true;
          #ifdef DEBUG
          std::cout << "Cursor is at " << cursor
           << " and subtree right is at: " << subTreePtr->getRightChildPtr() << std::endl;
@@ -112,8 +115,15 @@ BinaryNode<ItemType>* BinaryNodeTree<ItemType>::randomAdd(BinaryNode<ItemType>* 
 
       if (!cursor)
       {
-         #ifdef DEBUG
+         
          cursor = new BinaryNode<ItemType>;
+         if (left) {
+            subTreePtr->setLeftChildPtr(cursor);
+         } else {
+            subTreePtr->setRightChildPtr(cursor);
+         }
+         
+         #ifdef DEBUG
          std::cout << "creating a new node for cursor at: "
          << cursor << " :: with subtree at: " << subTreePtr
          << " and subtree left at: " << subTreePtr->getLeftChildPtr()
@@ -138,6 +148,49 @@ BinaryNode<ItemType>* BinaryNodeTree<ItemType>::randomAdd(BinaryNode<ItemType>* 
    }
 
    return subTreePtr;
+}
+
+//this one works :)
+template<class ItemType>
+void BinaryNodeTree<ItemType>::randAdd(BinaryNode<ItemType>* subTreePtr, BinaryNode<ItemType>* addPtr)
+{
+   if (subTreePtr->getLeftChildPtr() == nullptr || subTreePtr->getRightChildPtr() == nullptr)
+   {
+      if (subTreePtr->getLeftChildPtr() == nullptr)
+      {
+         subTreePtr->setLeftChildPtr(addPtr);
+         #ifdef DEBUG
+         std::cout << "subtree: " << subTreePtr << " addptr: " << addPtr << std::endl;
+         std::cout << "subtree: " << subTreePtr << " root: " << rootPtr << std::endl;
+         std::cout << "root left: " << rootPtr->getLeftChildPtr() 
+         << " root right: " << rootPtr->getRightChildPtr() << std::endl;
+         #endif
+      }
+      else
+      {
+         subTreePtr->setRightChildPtr(addPtr);
+         #ifdef DEBUG
+         std::cout << "subtree: " << subTreePtr << " addptr: " << addPtr << std::endl;
+         std::cout << "subtree: " << subTreePtr << " root: " << rootPtr << std::endl;
+         std::cout << "root left: " << rootPtr->getLeftChildPtr() 
+         << " root right: " << rootPtr->getRightChildPtr() << std::endl;
+         #endif
+      }
+
+   }
+   else
+   {
+      //do a coin flip to see which direction we're going
+      //pass in subtree's appropriate child to the fxn again
+      if (coinFlip())
+      {
+         randAdd(subTreePtr->getRightChildPtr(), addPtr);
+      }
+      else
+      {
+         randAdd(subTreePtr->getLeftChildPtr(), addPtr);
+      }
+   }
 }
 
 template<class ItemType>
@@ -381,17 +434,31 @@ bool BinaryNodeTree<ItemType>::add(const ItemType& newData)
 {
    // BinaryNode<ItemType>* newNodePtr = new BinaryNode<ItemType>(newData);
    // rootPtr = balancedAdd(rootPtr, newNodePtr);
-   if (rootPtr) {
-      BinaryNode<ItemType>* newNodePtr = randomAdd(rootPtr);
-      newNodePtr->setItem(newData);
-      // cout << "Adress of root: " << rootPtr << " and newNodePtr: " << newNodePtr << endl;
-      // cout << "value of root: " << rootPtr->getItem() << " value of newNode: " << newNodePtr->getItem() << endl;
-      return true;
-   } else {
-      rootPtr = new BinaryNode<ItemType>(newData);
-      // cout << "Adress of root: " << rootPtr << " value of root: " << rootPtr->getItem() << endl;
-      return true;
+   // newNodePtr = randomAdd(rootPtr);
+   
+   // if (rootPtr) {
+   //    BinaryNode<ItemType>* newNodePtr = randomAdd(rootPtr);
+   //    newNodePtr->setItem(newData);
+   //    // cout << "Adress of root: " << rootPtr << " and newNodePtr: " << newNodePtr << endl;
+   //    // cout << "value of root: " << rootPtr->getItem() << " value of newNode: " << newNodePtr->getItem() << endl;
+   //    return true;
+   // } else {
+   //    rootPtr = new BinaryNode<ItemType>(newData);
+   //    // cout << "Adress of root: " << rootPtr << " value of root: " << rootPtr->getItem() << endl;
+   //    return true;
+   // }
+
+   BinaryNode<ItemType>* addPtr = new BinaryNode<ItemType>(newData);
+   if (!rootPtr)
+   {
+      rootPtr = addPtr;
    }
+   else
+   {
+      randAdd(rootPtr, addPtr);
+   }
+   return true;
+
 }  // end add
 
 template<class ItemType>
