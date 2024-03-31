@@ -12,6 +12,11 @@
 
 //#define DEBUG
 
+#define DISPLAY(V) \
+( \
+   (std::cout << (V)->getItem() << std::endl) \
+)
+
 //////////////////////////////////////////////////////////////
 //      Protected Utility Methods Section
 //////////////////////////////////////////////////////////////
@@ -156,6 +161,19 @@ void BinaryNodeTree<ItemType>::randAdd(BinaryNode<ItemType>* subTreePtr, BinaryN
 {
    if (subTreePtr->getLeftChildPtr() == nullptr || subTreePtr->getRightChildPtr() == nullptr)
    {
+
+      #ifdef DEBUG
+      DISPLAY(subTreePtr);
+      if (subTreePtr->getLeftChildPtr())
+      {
+         DISPLAY(subTreePtr->getLeftChildPtr());
+      }
+      if (subTreePtr->getRightChildPtr())
+      {
+         DISPLAY(subTreePtr->getRightChildPtr());
+      }
+      #endif
+
       if (subTreePtr->getLeftChildPtr() == nullptr)
       {
          subTreePtr->setLeftChildPtr(addPtr);
