@@ -92,7 +92,8 @@ BinaryNode<ItemType>* BinaryNodeTree<ItemType>::randomAdd(BinaryNode<ItemType>* 
 
       if (!cursor)
       {
-         return subTreePtr;
+         cursor = new BinaryNode<ItemType>;
+         return cursor;
       }
       else
       {
