@@ -7,6 +7,8 @@
 #include "BinaryNode.h" 
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 //////////////////////////////////////////////////////////////
 //      Protected Utility Methods Section
@@ -57,6 +59,51 @@ BinaryNode<ItemType>* BinaryNodeTree<ItemType>::balancedAdd(BinaryNode<ItemType>
       return subTreePtr;
    }  // end if
 }  // end balancedAdd
+
+bool coinFlip()
+{
+   unsigned seed = std::time(0);
+   std::srand(seed);
+   if (std::rand() % 2)
+   {
+      return true;
+   }
+   else
+   {
+      return false;
+   }
+}
+
+template<class ItemType>
+BinaryNode<ItemType>* BinaryNodeTree<ItemType>::randomAdd(BinaryNode<ItemType>* subTreePtr)
+{
+   //base case of no next pointer
+   
+   if (subTreePtr) {
+      BinaryNode<ItemType>* cursor;
+      if (coinFlip())
+      {
+         cursor = subTreePtr->getRightChildPtr();
+      }
+      else
+      {
+         cursor = subTreePtr->getLeftChildPtr();
+      }
+
+      if (!cursor)
+      {
+         return subTreePtr;
+      }
+      else
+      {
+         subTreePtr = randomAdd(cursor);
+      }
+   } else {
+      return subTreePtr;
+   }
+
+   return subTreePtr;
+}
 
 template<class ItemType>
 BinaryNode<ItemType>* BinaryNodeTree<ItemType>::moveValuesUpTree(BinaryNode<ItemType>* subTreePtr)
@@ -297,9 +344,19 @@ void BinaryNodeTree<ItemType>::setRootData(const ItemType& newItem)
 template<class ItemType>
 bool BinaryNodeTree<ItemType>::add(const ItemType& newData)
 {
-   BinaryNode<ItemType>* newNodePtr = new BinaryNode<ItemType>(newData);
-   rootPtr = balancedAdd(rootPtr, newNodePtr);
-   return true;
+   // BinaryNode<ItemType>* newNodePtr = new BinaryNode<ItemType>(newData);
+   // rootPtr = balancedAdd(rootPtr, newNodePtr);
+   if (rootPtr) {
+      BinaryNode<ItemType>* newNodePtr = randomAdd(rootPtr);
+      newNodePtr->setItem(newData);
+      // cout << "Adress of root: " << rootPtr << " and newNodePtr: " << newNodePtr << endl;
+      // cout << "value of root: " << rootPtr->getItem() << " value of newNode: " << newNodePtr->getItem() << endl;
+      return true;
+   } else {
+      rootPtr = new BinaryNode<ItemType>(newData);
+      // cout << "Adress of root: " << rootPtr << " value of root: " << rootPtr->getItem() << endl;
+      return true;
+   }
 }  // end add
 
 template<class ItemType>

@@ -35,6 +35,8 @@ protected:
    // keep the tree balanced.
    BinaryNode<ItemType>* balancedAdd(BinaryNode<ItemType>* subTreePtr,
                                      BinaryNode<ItemType>* newNodePtr);
+
+   BinaryNode<ItemType>* randomAdd(BinaryNode<ItemType>* subTreeptr);
    
    // Removes the target value from the tree by calling moveValuesUpTree
    // to overwrite value with value from child.
@@ -60,6 +62,7 @@ protected:
    void preorder(void visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
    void inorder(void visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
    void postorder(void visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
+   //
    
 public:
    //------------------------------------------------------------
