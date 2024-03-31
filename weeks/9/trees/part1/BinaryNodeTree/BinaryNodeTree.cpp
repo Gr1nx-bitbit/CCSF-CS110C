@@ -10,6 +10,8 @@
 #include <cstdlib>
 #include <ctime>
 
+#define DEBUG
+
 //////////////////////////////////////////////////////////////
 //      Protected Utility Methods Section
 //////////////////////////////////////////////////////////////
@@ -83,23 +85,55 @@ BinaryNode<ItemType>* BinaryNodeTree<ItemType>::randomAdd(BinaryNode<ItemType>* 
       BinaryNode<ItemType>* cursor;
       if (coinFlip())
       {
+         #ifdef DEBUG
+         std::cout << "Taking right" << std::endl;
+         std::cout << "Subtree is at " << subTreePtr 
+         << " and its value is: " << subTreePtr->getItem() << std::endl;
+         #endif
          cursor = subTreePtr->getRightChildPtr();
+         #ifdef DEBUG
+         std::cout << "Cursor is at " << cursor
+          << " and subtree left is at: " << subTreePtr->getLeftChildPtr() << std::endl;
+          #endif
       }
       else
       {
+         #ifdef DEBUG
+         std::cout << "Taking right" << std::endl;
+         std::cout << "Subtree is at " << subTreePtr 
+         << " and its value is: " << subTreePtr->getItem() << std::endl;
+         #endif
          cursor = subTreePtr->getLeftChildPtr();
+         #ifdef DEBUG
+         std::cout << "Cursor is at " << cursor
+          << " and subtree right is at: " << subTreePtr->getRightChildPtr() << std::endl;
+          #endif
       }
 
       if (!cursor)
       {
+         #ifdef DEBUG
          cursor = new BinaryNode<ItemType>;
+         std::cout << "creating a new node for cursor at: "
+         << cursor << " :: with subtree at: " << subTreePtr
+         << " and subtree left at: " << subTreePtr->getLeftChildPtr()
+         << " and subtree right at: " << subTreePtr->getRightChildPtr()
+         << std::endl;
+         #endif
          return cursor;
       }
       else
       {
+         std::cout << "going down again!"
+         << " subtree is at: " << subTreePtr
+         << " and cursor is at: " << cursor
+         << " with subtree left at: " << subTreePtr->getLeftChildPtr()
+         << " and subtree right at: " << subTreePtr->getRightChildPtr()
+         << endl;
          subTreePtr = randomAdd(cursor);
       }
    } else {
+      subTreePtr = new BinaryNode<ItemType>;
       return subTreePtr;
    }
 
