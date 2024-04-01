@@ -1,7 +1,18 @@
 1. A would be the root node with B following as the right child. W would be the right child of B 
 and J would be the left child of W. Since N is greater than J and less than W it will become J's 
-right child and since T is greater than N, it will become N's right child. E will become T's left
+right child and since T is greater than N, it will become N's right child. E will become J's left
 child.
+        A
+         \
+          B
+           \
+            W
+           /
+          J
+         / \
+        E   N
+             \
+              T
 
 2. B would be the root and T would become B's right child. E is greater than B so it would follow
 down to T and become its left child. A is less than B so it would become B's left child. N is less
@@ -9,14 +20,38 @@ than T so it will follow down to E but since N is greater than E it will become 
 will follow down to T and become its right child. J will follow down to T and go down T's left child
 which is E. It will then follow down E's right child which is N. Since J is less than N it will 
 become N's left child. 
+                        B
+                       / \
+                      A   T
+                         / \
+                        E   W
+                         \
+                          N
+                           \
+                            J
 
 3. Max number of nodes in a tree of height 3 is 2^3 - 1 or 7 nodes. A tree of height 4 nodes will
 cap out at 2^4 - 1 or 15 nodes and a tree of height h will cap out at 2^h - 1 nodes. 
 
 4. Insert J as the root. Then inset B which will become J's left child. Insert A and E to 
 become the left and right child of B respecitvely. Insert T to become J's right child and then 
-insert E and W to become the left and right child of T respecitvely.
+insert N and W to become the left and right child of T respecitvely.
+            J
+          /   \
+         B     T
+        / \   / \
+       A   E N   W
 
 5. 80 becomes the right child of 70 and 65 becomes the left child of 70. 75 becomes the left child
 of 80 and 45 becomes the left child of 50. 35 becomes the right child of 30 and 25 becomes the left
 child of 30. 
+
+                    60
+                  /    \
+                20       70
+               /  \     /  \
+              10   40  65   80
+                  /  \     /
+                30    50  75
+               /  \  /
+              25  35 45
