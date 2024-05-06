@@ -1,0 +1,17 @@
+doubleStack(stack aStack) {
+    stack tmp
+    while(!aStack.isEmpty()) 
+    {
+        int value = aStack.peek()
+        value *= 2
+        tmp.push(value)
+        aStack.pop()
+    }
+
+    while(!tmp.isEmpty())
+    {
+        int value = tmp.peek()
+        aStack.push(value)
+        tmp.pop()
+    }
+}
