@@ -5,6 +5,15 @@
 #include <iostream>
 using namespace std;
 
+Node* makeNode(Birthday input) {
+	Person p;
+	p.setBirthday(input);
+
+	Node* cursor = new Node;
+	cursor->setData(p);
+	return cursor;
+}
+
 int main(void) {
 	Birthday b;
 	b.day = 21;
@@ -17,12 +26,25 @@ int main(void) {
 
 	Node* p = new Node;
 	p->setData(jack);
-	cout << p->getData().getBirthday().day << endl;
 
 	BalancedTree<Node> bt;
-	cout << "hello" << endl;
 	bt.add(p);
-	cout << "hello0" << endl;
+	for (int i = 0; i < 3; i++) {
+		b.day++;
+		bt.add(makeNode(b));
+	}
+
+	b.day = 18;
+	for (int i = 0; i < 2; i++) {
+		b.day++;
+		bt.add(makeNode(b));
+	}
+
+	cout << bt.getHeight(bt.getRoot(), 0) << endl;
+
+	for (Node* cursor = bt.getRoot(); cursor != nullptr; cursor = cursor->getRight()) {
+		cout << "0" << endl;
+	}
 	
 	return 0;
 }

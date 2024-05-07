@@ -9,7 +9,7 @@ class BalancedTree {
         int nodeCount;
         Node* root;
         bool balanced(void);
-        int getHeight(Node*, int);
+        // int getHeight(Node*, int);
         
     public:
         BalancedTree(void);
@@ -17,6 +17,8 @@ class BalancedTree {
         bool add(Node*);
         bool remove(Node*);
         void displayMonth(int);
+        int getHeight(Node*, int);
+        Node* getRoot() { return root; }
 };
 
 #endif
