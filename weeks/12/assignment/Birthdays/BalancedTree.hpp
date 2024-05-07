@@ -7,15 +7,15 @@ template <class type>
 class BalancedTree {
     private:
         int nodeCount;
-        Node<type>* root;
+        Node* root;
         bool balanced(void);
-        int getHeight(Node<type>*, int);
+        int getHeight(Node*, int);
         
     public:
         BalancedTree(void);
         bool isEmpty(void);
-        bool add(Node<type>*);
-        bool remove(Node<type>*);
+        bool add(Node*);
+        bool remove(Node*);
         void displayMonth(int);
 };
 

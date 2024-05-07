@@ -11,7 +11,7 @@ bool BalancedTree<type>::balanced(void) {
 }
 
 template<class type>
-int BalancedTree<type>::getHeight(Node<type>* item, int depth) {
+int BalancedTree<type>::getHeight(Node* item, int depth) {
     int height = 0;
     if (item == nullptr) {
         return depth;
@@ -44,14 +44,14 @@ bool BalancedTree<type>::isEmpty(void) {
 }
 
 template<class type>
-bool BalancedTree<type>::add(Node<type>* item) {
+bool BalancedTree<type>::add(Node* item) {
      if (!root) {
-        root = new Node<type>;
+        root = new Node;
         root = item;
         nodeCount++;
      } else if (balanced()) {
         // this will have cursor get to a leaf where item can be inserted
-        Node<type>* cursor;
+        Node* cursor;
         for (cursor = root; cursor != nullptr; true) {
             if (cursor->getData() > item->getData()) {
                 cursor = cursor->getLeft();
@@ -67,8 +67,8 @@ bool BalancedTree<type>::add(Node<type>* item) {
 }
 
 template<class type>
-bool BalancedTree<type>::remove(Node<type>* item) {
+bool BalancedTree<type>::remove(Node* item) {
     return true;
 }
 
-template class BalancedTree< Node<Person> >;
+template class BalancedTree<Node>;

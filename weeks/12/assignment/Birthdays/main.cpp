@@ -15,11 +15,11 @@ int main(void) {
 	jack.setBirthday(b);
 	cout << jack.getName() << endl;
 
-	Node<Person>* p;
+	Node* p;
 	p->setData(jack);
 	cout << p->getData().getBirthday().day << endl;
 
-	BalancedTree< Node<Person> >* bt;
+	BalancedTree<Node>* bt;
 	bt->add(p);
 	
 	return 0;
