@@ -1,4 +1,5 @@
 #include "BalancedTree.hpp"
+#include <iostream>
 
 template<class type>
 bool BalancedTree<type>::balanced(void) {
@@ -45,25 +46,26 @@ bool BalancedTree<type>::isEmpty(void) {
 
 template<class type>
 bool BalancedTree<type>::add(Node* item) {
-     if (!root) {
+     if (root == nullptr) {
         root = new Node;
         root = item;
         nodeCount++;
      } else if (balanced()) {
         // this will have cursor get to a leaf where item can be inserted
         Node* cursor;
-        for (cursor = root; cursor != nullptr; true) {
-            if (cursor->getData() > item->getData()) {
+        for (cursor = root; cursor != nullptr;) {
+            if (cursor->getData().getBirthday() > item->getData().getBirthday()) {
                 cursor = cursor->getLeft();
-            } else if (cursor->getData() < item->getData()) {
+            } else if (cursor->getData().getBirthday() < item->getData().getBirthday()) {
                 cursor = cursor->getRight();
             }
         }
-        cursor = new Node<type>;
+        cursor = new Node;
         cursor = item;
         nodeCount++;
     } 
     // else if (!balanced()) {}
+    return true;
 }
 
 template<class type>

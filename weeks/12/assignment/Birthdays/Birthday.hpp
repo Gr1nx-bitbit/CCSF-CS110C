@@ -40,6 +40,7 @@ struct Birthday {
     bool operator=(const Birthday& right) {
         month = right.month;
         day = right.day;
+        return true;
     }
 };
 
