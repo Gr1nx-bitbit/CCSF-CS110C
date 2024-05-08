@@ -30,6 +30,24 @@ void Person::setBirthday(Birthday birthday) {
 }
 
 void Person::operator=(const Person& right) {
-    this->setName(right.name);
-    this->setBirthday(right.birthday);
+    std::string n = right.name;
+    Birthday b = right.birthday;
+    this->setName(n);
+    this->setBirthday(b);
+}
+
+bool Person::operator==(const Person& right) {
+    if (this->birthday == right.birthday && this->name == right.name) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Person::operator==(Person* right) {
+    if (this->getBirthday() == right->getBirthday() && this->name == right->name) {
+        return true;
+    } else {
+        return false;
+    }
 }

@@ -5,9 +5,10 @@
 #include <iostream>
 using namespace std;
 
-Node* makeNode(Birthday input) {
+Node* makeNode(Birthday input, string name) {
 	Person p;
 	p.setBirthday(input);
+	p.setName(name);
 
 	Node* cursor = new Node;
 	cursor->setData(p);
@@ -22,7 +23,6 @@ int main(void) {
 	Person jack;
 	jack.setName("Jack");
 	jack.setBirthday(b);
-	cout << jack.getName() << endl;
 
 	Node* p = new Node;
 	p->setData(jack);
@@ -31,20 +31,43 @@ int main(void) {
 	bt.add(p);
 	for (int i = 0; i < 3; i++) {
 		b.day++;
-		bt.add(makeNode(b));
+		string name = "Kitty";
+		bt.add(makeNode(b, name));
 	}
 
 	b.day = 18;
 	for (int i = 0; i < 2; i++) {
 		b.day++;
-		bt.add(makeNode(b));
+		string name = "Neko-chan";
+		bt.add(makeNode(b, name));
 	}
 
-	cout << bt.getHeight(bt.getRoot(), 0) << endl;
-
-	for (Node* cursor = bt.getRoot(); cursor != nullptr; cursor = cursor->getRight()) {
-		cout << "0" << endl;
+	for (int i = 0; i < 4; i++) {
+		b.day--;
+		b.month++;
+		string name = "Hullabaloo";
+		bt.add(makeNode(b, name));
 	}
+
+	bt.displayTree(bt.getRoot());
+	cout << endl;
+
+	cout << "Retreiving all people with name Jack" << endl;
+	bt.fetchName(bt.getRoot(), "Jack");
+	cout << endl;
+
+	bt.remove(bt.getRoot());
+	cout << "Removed Jack" << endl << endl;
+
+	cout << "Tree after removal" << endl;
+	bt.displayTree(bt.getRoot());
+	cout << endl;
+
+	cout << "Displaying everyone with a birthday month 5" << endl;
+	bt.displayMonth(bt.getRoot(), 5);
+	cout << endl << endl;
+	bt.fetchName(bt.getRoot(), "Neko-chan");
+	
 	
 	return 0;
 }

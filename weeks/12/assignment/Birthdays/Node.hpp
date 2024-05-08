@@ -23,7 +23,7 @@ class Node {
         Person getData(void)
         { return data; }
 
-        void setData(Person& data)
+        void setData(Person data)
         { this->data = data; }
 
         Node* getParent(void)

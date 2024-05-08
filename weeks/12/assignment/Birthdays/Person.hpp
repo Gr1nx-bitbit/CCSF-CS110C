@@ -16,6 +16,8 @@ class Person {
 	 	void setName(std::string name);
 		void setBirthday(Birthday birthday);
 		void operator=(const Person&);
+		bool operator==(const Person&);
+		bool operator==(Person*);
 };
 
 #endif

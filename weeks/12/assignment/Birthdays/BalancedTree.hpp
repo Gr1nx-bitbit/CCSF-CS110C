@@ -2,6 +2,7 @@
 #define BALANCEDTREE_H
 
 #include "Node.hpp"
+#include <string>
 
 template <class type>
 class BalancedTree {
@@ -9,16 +10,22 @@ class BalancedTree {
         int nodeCount;
         Node* root;
         bool balanced(void);
-        // int getHeight(Node*, int);
+        int getHeight(Node*, int);
+        Node* getNodeatHeight(Node*, int, int);
+        void swap(Node*, Node*);
         
     public:
         BalancedTree(void);
         bool isEmpty(void);
         bool add(Node*);
         bool remove(Node*);
-        void displayMonth(int);
-        int getHeight(Node*, int);
+        void fetchName(Node*, std::string);
+        void displayMonth(Node*, int);
+        void displayTree(Node*);
+        // int getHeight(Node*, int);
+        // Node* getNodeatHeight(Node*, int, int);
         Node* getRoot() { return root; }
+        // bool balanced(void);
 };
 
 #endif
