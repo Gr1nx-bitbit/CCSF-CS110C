@@ -1,8 +1,11 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include <string>
+
 class Graph {
     private:
+        std::string* airPorts;
         int** adjacencyMatrix;
         int numVerticies;
         // int* weightArray;
@@ -17,6 +20,8 @@ class Graph {
         //int** getMatrix(void);
         int getCost(int, int);
         void setEdge(int, int, int);
+        std::string getAirport(int);
+        void setAirport(int, std::string);
         void displayGraph(void);
 };
 

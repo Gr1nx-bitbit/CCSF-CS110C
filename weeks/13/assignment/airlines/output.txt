@@ -1,0 +1,17 @@
+➜  airlines git:(main) ✗ ./a.out               
+Cheapest cost for a flight to every other airport from SFO
+|     0  |   120  |   150  |   195  |   345  |   470  |
+From SFO to LAX: 120
+From SFO to LAS: 150
+From SFO to PHX: 195
+From SFO to DEN: 345
+From SFO to JFK: 470
+
+Cheapest cost for a flight to every other airport from LAS
+|   150  |   270  |     0  |   345  |   250  |   620  |
+From LAS to SFO: 150
+From LAS to LAX: 270
+From LAS to PHX: 345
+From LAS to DEN: 250
+From LAS to JFK: 620
+➜  airlines git:(main) ✗ 

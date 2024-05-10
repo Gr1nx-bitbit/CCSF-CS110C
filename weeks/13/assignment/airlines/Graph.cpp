@@ -6,12 +6,14 @@ using namespace std;
 #define DEBUG
 
 Graph::Graph(void) {
+    airPorts = nullptr;
     adjacencyMatrix = nullptr;
     numVerticies = 0;
 }
 
 Graph::Graph(int numVerticies) {
     this->numVerticies = numVerticies;
+    airPorts = new string[numVerticies];
     adjacencyMatrix = new int*[numVerticies];
     for (int i = 0; i < numVerticies; i++)
         adjacencyMatrix[i] = new int[numVerticies];
@@ -44,6 +46,20 @@ void Graph::setEdge(int iIndex, int jIndex, int cost) {
     else adjacencyMatrix[iIndex][jIndex] = cost;
 }
 
+void Graph::setAirport(int index, string airPort) {
+    if (numVerticies > 0) {
+        int i = index % numVerticies;
+        airPorts[i] = airPort;
+    }
+}
+
+string Graph::getAirport(int index) {
+    if (numVerticies > 0) {
+        int i = index % numVerticies;
+        return airPorts[i];
+    }
+}
+
 bool contains(int* array, int len, int value) {
     for (int i = 0; i < len; i++) {
         if (array[i] == value) {
@@ -54,8 +70,8 @@ bool contains(int* array, int len, int value) {
 }
 
 void Graph::dijkstra(int headIndex) {
-    int* vertexSet   = new int[numVerticies];
-    int* weightSet   = new int[numVerticies];
+    int* vertexSet = new int[numVerticies];
+    int* weightSet = new int[numVerticies];
 
     for (int i = 0; i < numVerticies; i++) {
         vertexSet[i] = -1;
@@ -82,11 +98,13 @@ void Graph::dijkstra(int headIndex) {
         }
     }
 
+    #ifndef DEBUG
     cout << "Weight set after initialize: " << endl;
     for (int i = 0; i < numVerticies; i++) {
         cout << "|" << setw(6) << weightSet[i] << setw(3);
     }
     cout << "|" << endl;
+    #endif
 
     for (int index = 1; index < numVerticies; index++) {
         int nextIndex;
@@ -122,7 +140,9 @@ void Graph::dijkstra(int headIndex) {
                     #ifndef DEBUG
                     cout << "previous lowest: " << lowest << endl;
                     cout << "new lowest -> adjacencyMatrix[vertexSet[index]][i]" << adjacencyMatrix[vertexSet[index]][i] << endl;
-                    cout << "newIndex: " << i << endl << endl;
+                    for (int i = 0; i < index + 1; i++)
+                        cout << "vertexSet[" << i << "]: " << vertexSet[i] << endl;
+                        cout << "newIndex: " << i << endl << endl;
                     #endif
                     lowest = adjacencyMatrix[vertexSet[index]][i];
                     nextIndex = i;
@@ -131,44 +151,26 @@ void Graph::dijkstra(int headIndex) {
         }
 
         if (index + 1 < numVerticies) {
-            for (int i = 0; i < index + 1; i++) {
-                #ifndef DEBUG
-                cout << "vertexSet[" << i << "]: " << vertexSet[i] << endl;
-                #endif
-            }
             #ifndef DEBUG
+            for (int i = 0; i < index + 1; i++)
+                cout << "vertexSet[" << i << "]: " << vertexSet[i] << endl;
             cout << "setting vertexSet[" << index + 1 << "] to " << nextIndex << endl;
             #endif
             vertexSet[index + 1] = nextIndex;
         }
     }
 
+    #ifndef DEBUG
     cout << "Weight set after Dijkstra's algorithm: " << endl;
-    for (int i = 0; i < numVerticies; i++) {
+    #endif
+    for (int i = 0; i < numVerticies; i++)
         cout << "|" << setw(6) << weightSet[i] << setw(3);
-    }
     cout << "|" << endl;
 
-    // for (int i = 0; i < numVerticies; i++) {
-    //         // so I have to check if the index I'm adding is in the vertex set, it would be nice to use a hash
-    //         // map but that's too much work rn, I'll just do a brute force method
-    //         int lowest = -1;
-    //         int nextIndex;
-    //         if (adjacencyMatrix[vertexSet[index]][i] != 0 && lowest == -1) {
-    //             if (!contains(vertexSet, numVerticies, i)) {
-    //                 lowest = adjacencyMatrix[vertexSet[index]][i];
-    //                 nextIndex = i;
-    //             }
-    //         } else {
-    //             if (adjacencyMatrix[vertexSet[index]][i] < lowest && adjacencyMatrix[vertexSet[index]][i] != 0) {
-    //                 if (!contains(vertexSet, numVerticies, i)) {
-    //                     lowest = adjacencyMatrix[vertexSet[index]][i];
-    //                     nextIndex = i;
-    //                 }
-    //             }
-    //         }
-    //     }
-
+    for (int i = 0; i < numVerticies; i++) {
+        if (i != headIndex)
+            cout << "From " << getAirport(headIndex) << " to " << getAirport(i) << ": " << weightSet[i] << endl;
+    }
 }
 
 void Graph::displayGraph(void) {
