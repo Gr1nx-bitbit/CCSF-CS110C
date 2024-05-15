@@ -1,0 +1,16 @@
+int lefties(BinaryNode* nodePtr) {
+    int num = 0;
+    if (nodePtr->isLeaf() && nodePtr != nullptr) {
+        return num;
+    } else if (nodePtr->getLeft() == nullptr && nodePtr->getRight() != nullptr) {
+        num += lefties(nodePtr->getRight());
+    } else if (nodePtr->getLeft() != nullptr && nodePtr->getRight() == nullptr) {
+        num++;
+        num += lefties(nodePtr->getLeft()); 
+    } else {
+        num++;
+        num += lefties(nodePtr->getLeft());
+        num += lefties(nodePtr->getRight());
+    }
+    return num;
+}

@@ -411,7 +411,7 @@ void BalancedTree<type>::displayMonth(Node* rt, int month) {
 
 template<class type>
 void BalancedTree<type>::displayTree(Node* rt) {
-    if (rt->getLeft() == nullptr && rt->getRight() == nullptr) {
+    if (rt->getLeft() == nullptr && rt->getRight() == nullptr && rt != nullptr) {
         cout << "Name: " << rt->getData().getName() << " | Birthday: " << rt->getData().getBirthday().month << "-" << rt->getData().getBirthday().day << endl;
         return;
     } else if (rt->getLeft() == nullptr && rt->getRight() != nullptr) {
@@ -425,6 +425,24 @@ void BalancedTree<type>::displayTree(Node* rt) {
         displayTree(rt->getLeft());
         displayTree(rt->getRight());
     }
+}
+
+template<class type>
+int BalancedTree<type>::lefties(Node* nodePtr) {
+    int num = 0;
+    if (nodePtr->getLeft() == nullptr && nodePtr->getRight() == nullptr && nodePtr != nullptr) {
+        return num;
+    } else if (nodePtr->getLeft() == nullptr && nodePtr->getRight() != nullptr) {
+        num += lefties(nodePtr->getRight());
+    } else if (nodePtr->getLeft() != nullptr && nodePtr->getRight() == nullptr) {
+        num++;
+        num += lefties(nodePtr->getLeft()); 
+    } else {
+        num++;
+        num += lefties(nodePtr->getLeft());
+        num += lefties(nodePtr->getRight());
+    }
+    return num;
 }
 
 template class BalancedTree<Node>;

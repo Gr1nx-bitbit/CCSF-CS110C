@@ -44,7 +44,7 @@ int main(void) {
 
 	for (int i = 0; i < 4; i++) {
 		b.day--;
-		b.month++;
+		b.month--;
 		string name = "Hullabaloo";
 		bt.add(makeNode(b, name));
 	}
@@ -52,9 +52,9 @@ int main(void) {
 	bt.displayTree(bt.getRoot());
 	cout << endl;
 
-	cout << "Retreiving all people with name Jack" << endl;
-	bt.fetchName(bt.getRoot(), "Jack");
-	cout << endl;
+	// cout << "Retreiving all people with name Jack" << endl;
+	// bt.fetchName(bt.getRoot(), "Jack");
+	// cout << endl;
 
 	bt.remove(bt.getRoot());
 	cout << "Removed Jack" << endl << endl;
@@ -63,10 +63,12 @@ int main(void) {
 	bt.displayTree(bt.getRoot());
 	cout << endl;
 
-	cout << "Displaying everyone with a birthday month 5" << endl;
-	bt.displayMonth(bt.getRoot(), 5);
-	cout << endl << endl;
-	bt.fetchName(bt.getRoot(), "Neko-chan");
+	// cout << "Displaying everyone with a birthday month 5" << endl;
+	// bt.displayMonth(bt.getRoot(), 5);
+	// cout << endl << endl;
+	// bt.fetchName(bt.getRoot(), "Neko-chan");
+
+	cout << endl << bt.lefties(bt.getRoot()) << endl;
 	
 	
 	return 0;

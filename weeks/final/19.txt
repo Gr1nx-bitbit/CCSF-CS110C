@@ -1,0 +1,48 @@
+Psuedo-code for question 19
+
+thirdLargest(heap1 : heap, heap2 : heap)
+{
+    first : int
+    second : int
+    third : int
+
+    first = heap1.peek()
+    heap1.remove()
+    second = heap1.peek()
+    heap1.remove()
+    third = heap1.peek()
+    heap1.remove()
+
+    //this first while loop is not necessary since these are max heaps so the largest value will alawys be the one that is peeked
+    while(!heap1.isEmpty()) 
+    {
+        compare : int
+        compare = heap1.peek()
+        heap1.remove()
+
+        if (compare > first) {
+            first = compare
+        } else if (compare > second) {
+            second = compare
+        } else if (compare > third) {
+            third = compare
+        }
+    }
+
+    while(!heap2.isEmpty()) 
+    {
+        compare : int
+        compare = heap2.peek();
+        heap2.remove()
+
+        if (compare > first) {
+            first = compare
+        } else if (compare > second) {
+            second = compare
+        } else if (compare > third) {
+            third = compare
+        }
+    }
+
+    return third;
+}

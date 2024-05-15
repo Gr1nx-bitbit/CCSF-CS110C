@@ -25,6 +25,7 @@ class BalancedTree {
         // int getHeight(Node*, int);
         // Node* getNodeatHeight(Node*, int, int);
         Node* getRoot() { return root; }
+        int lefties(Node*);
         // bool balanced(void);
 };
 

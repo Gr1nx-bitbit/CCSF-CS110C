@@ -15,8 +15,10 @@ Graph::Graph(int numVerticies) {
     this->numVerticies = numVerticies;
     airPorts = new string[numVerticies];
     adjacencyMatrix = new int*[numVerticies];
+
     for (int i = 0; i < numVerticies; i++)
         adjacencyMatrix[i] = new int[numVerticies];
+        
     for (int i = 0; i < numVerticies; i++) {
         for (int j = 0; j < numVerticies; j++) {
             adjacencyMatrix[i][j] = 0;
